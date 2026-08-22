@@ -2,8 +2,7 @@
   "name": "dinethlive",
   "owner": {
     "name": "Dineth Pramodya",
-    "email": "dinethlive@users.noreply.github.com",
-    "url": "https://github.com/dinethlive"
+    "url": "https://dinethlive.com"
   },
   "description": "Plugins for dl-engine, the Sri Lankan A/L study engine.",
   "plugins": [
@@ -15,7 +14,7 @@
       "version": "0.3.0",
       "author": {
         "name": "Dineth Pramodya",
-        "email": "dinethlive@users.noreply.github.com"
+        "url": "https://dinethlive.com"
       },
       "homepage": "https://dlengine.xyz/plugin",
       "repository": "https://github.com/dinethlive/dl-engine-plugin",

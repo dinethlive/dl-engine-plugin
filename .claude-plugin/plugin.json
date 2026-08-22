@@ -6,7 +6,7 @@
   "description": "Teach from the dl-engine corpus with citations. Wires a lesson folder to one subject's MCP corpus server, then prepares concepts, sweeps themes and audits the connection map, every claim carrying its lesson slug and line number.",
   "author": {
     "name": "Dineth Pramodya",
-    "email": "dinethlive@users.noreply.github.com"
+    "url": "https://dinethlive.com"
   },
   "homepage": "https://dlengine.xyz/plugin",
   "repository": "https://github.com/dinethlive/dl-engine-plugin",

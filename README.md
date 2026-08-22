@@ -209,4 +209,4 @@ URL and key in connector settings. Forked skills, agents and hooks are Claude
 Code features and do not carry across, so `sweep` and `audit` would run inline
 there rather than in their own context.
 
-MIT licensed. Dineth Pramodya, dinethlive@users.noreply.github.com.
+MIT licensed. Built by [Dineth Pramodya](https://dinethlive.com).
