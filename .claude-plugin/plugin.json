@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "dl-engine",
+  "displayName": "dl-engine Corpus",
+  "version": "0.1.0",
+  "description": "Teach from the dl-engine corpus with citations. Wires a lesson folder to one subject's MCP corpus server, then prepares concepts, sweeps themes and audits the connection map, every claim carrying its lesson slug and line number.",
+  "author": {
+    "name": "Dineth Pramodya",
+    "email": "dinethlive@users.noreply.github.com"
+  },
+  "homepage": "https://dlengine.xyz/plugin",
+  "repository": "https://github.com/dinethlive/dl-engine-plugin",
+  "license": "MIT",
+  "keywords": [
+    "dl-engine",
+    "corpus",
+    "teaching",
+    "lesson-prep",
+    "citations",
+    "mcp",
+    "sinhala",
+    "advanced-level",
+    "sri-lanka"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "dl-engine API key",
+      "description": "Optional. Mint a key on the dl-engine plugin page at https://dlengine.xyz/plugin and keep it here for reference. The folder-level .mcp.json that /dl-engine:setup writes reads DL_ENGINE_KEY from your shell environment instead, so leave this blank if you already export that variable.",
+      "sensitive": true,
+      "required": false
+    }
+  }
+}

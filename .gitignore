@@ -1,0 +1,18 @@
+# Never commit a folder's corpus binding. It names a subject, and a pasted key
+# would be a live read of that subject for anyone holding the repo.
+.mcp.json
+
+# Local Claude Code state
+.claude/settings.local.json
+
+# Secrets
+.env
+.env.*
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+node_modules/
+*.log

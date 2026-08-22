@@ -1,0 +1,40 @@
+{
+  "name": "dinethlive",
+  "owner": {
+    "name": "Dineth Pramodya",
+    "email": "dinethlive@users.noreply.github.com",
+    "url": "https://github.com/dinethlive"
+  },
+  "description": "Plugins for dl-engine, the Sri Lankan A/L study engine.",
+  "plugins": [
+    {
+      "name": "dl-engine",
+      "source": "./",
+      "displayName": "dl-engine Corpus",
+      "description": "Teach from the dl-engine corpus with citations. Wires a lesson folder to one subject's MCP corpus server, then prepares concepts, sweeps themes and audits the connection map, every claim carrying its lesson slug and line number.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Dineth Pramodya",
+        "email": "dinethlive@users.noreply.github.com"
+      },
+      "homepage": "https://dlengine.xyz/plugin",
+      "repository": "https://github.com/dinethlive/dl-engine-plugin",
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "dl-engine",
+        "corpus",
+        "teaching",
+        "lesson-prep",
+        "citations",
+        "mcp"
+      ],
+      "tags": [
+        "teaching",
+        "corpus",
+        "mcp",
+        "sinhala"
+      ]
+    }
+  ]
+}
