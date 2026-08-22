@@ -23,6 +23,14 @@ missing cards are all produced at ingest time and are repaired by re-running the
 pipeline in the dl-engine repo (`ingest`, `index`, `ingest-outline`). Hand the
 teacher a finding they can act on there. Never propose patching the data.
 
+## The subject
+
+Every corpus tool takes `subject`, and one connector reaches all of them, so an
+audit that drifts between subjects would report every lesson of one as an orphan
+of the other. Fix the slug before the first call, from the folder's `CLAUDE.md`
+or from `$ARGUMENTS`, and use that one slug for every call in the run. A forked
+run cannot ask, so if no slug is available, say that and stop.
+
 ## Before anything: page to completion
 
 Checks 1 and 3 are set differences. A half-fetched index makes every slug you

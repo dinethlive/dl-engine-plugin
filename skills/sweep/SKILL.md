@@ -51,6 +51,11 @@ Do these in order. Each step decides what the next step is allowed to spend.
    set, plus edges that point at a lesson you did not expect, those are findings.
    Turn `evidence: true` on only for an edge you are about to quote.
 
+Every call above and below takes `subject`. This runs forked, so it cannot see
+the conversation: the slug comes from the folder's `CLAUDE.md` or from the
+argument you were given, and if neither has one, say so and stop rather than
+sweeping a subject nobody asked for.
+
 Optional, only for the two or three spine lessons: `corpus_index` with
 `format: 'full'` and `slug` set to that lesson gives `examRelevance`, the field
 worth the most to a teacher. One call per spine lesson, no paging. Zero items

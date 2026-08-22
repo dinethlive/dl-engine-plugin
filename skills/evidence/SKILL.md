@@ -9,6 +9,15 @@ Where this comes from: dl-engine's Atlas indexer requires every proposed connect
 
 ## Rules
 
+0. **Name the subject, every call.** Each corpus tool takes `subject`, and one
+   connector reaches every subject the teacher has been assigned. Take the slug
+   from the folder's `CLAUDE.md` or from what the teacher said; if neither names
+   one, run `list_subjects` and ask. Never guess. Each tool echoes the subject it
+   read in its first line, so check that line rather than trusting the argument
+   you sent. A citation is only as good as the corpus it came from, and a
+   well-formed slug from the wrong subject is the one error this whole contract
+   cannot catch.
+
 1. **Cite a lesson slug for every claim.** When the claim came from `corpus_search`, add the 1-based line number the tool returned: `(photosynthesis-light-reactions:142)`. From `corpus_read` or `corpus_index`, the slug alone is enough.
 
 2. **A quote is the source's characters.** Copy them exactly, including punctuation, capitalisation and the original Sinhala. Never present a paraphrase, a translation or a tidied line inside quote marks. Translate outside the quote if the teacher needs it, and mark it as a translation.

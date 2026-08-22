@@ -26,6 +26,10 @@ definition, a worked treatment) and skip the ones with a single passing mention.
 Reading is the only thing that licenses describing a lesson. Name the skipped ones
 as passing mentions rather than dropping them.
 
+Pass `subject` on every call below, taking the slug from the folder's
+`CLAUDE.md` or from the teacher. One connector reaches every assigned subject, so
+nothing stops a call landing in the wrong one except naming the right one.
+
 **3. corpus_index format='full' slug=<slug> for those lessons' cards.** One call
 per lesson you settled on, and nothing else comes back. Never pull the whole
 subject full: ~894 tokens a card, and you want two or three of them. The reply is

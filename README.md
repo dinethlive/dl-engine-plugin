@@ -1,9 +1,10 @@
 # dl-engine Corpus
 
 Claude Code plugin for teachers who prepare lessons from a dl-engine subject.
-It points a folder at one subject's corpus over MCP, then prepares concepts,
-sweeps themes across the syllabus and audits the connection map, with every
-claim carrying the lesson slug and line number it came from.
+One connector reaches every subject you have been assigned, and each folder says
+which one it is about. It prepares concepts, sweeps themes across the syllabus
+and audits the connection map, with every claim carrying the lesson slug and
+line number it came from.
 
 ## What you need first
 
@@ -11,9 +12,9 @@ claim carrying the lesson slug and line number it came from.
    If the plugin page says so, ask an admin to turn plugin access on.
 2. **A key, minted at [dlengine.xyz/plugin](https://dlengine.xyz/plugin).** A key
    belongs to YOU, not to a subject. It is read only, and it reaches every
-   subject an admin has assigned you, so one key covers all of them. The folder's
-   connector URL is what narrows a session to one. The plugin page lists your
-   subjects and the exact command for each.
+   subject an admin has assigned you, so one key covers all of them and one
+   connector reads all of them. The plugin page lists your subjects and the
+   single command that registers it.
 3. **`DL_ENGINE_KEY` exported in your shell profile**, once, not per session:
 
    PowerShell, in the file `$PROFILE` names:
@@ -50,10 +51,22 @@ Skills are namespaced by the plugin, so they are `/dl-engine:setup`,
 `/dl-engine:teach` and so on. After editing plugin files, `/reload-plugins`
 picks up the change without restarting.
 
-## One folder per lesson
+## One connector, then a folder per lesson
 
-The corpus server is bound per folder, because one folder is one subject.
-So each lesson or topic gets its own folder, wired once:
+Register the connector once for your whole account:
+
+```bash
+claude mcp add --scope user --transport http dl-engine \
+  https://mcp.dlengine.xyz/mcp \
+  --header 'Authorization: Bearer ${DL_ENGINE_KEY}'
+```
+
+That is the only installation step, and it is not per subject. Your key reaches
+every subject an admin has assigned you, and the corpus tools take a `subject`
+argument, so one connector reads all of them and you can switch mid-session.
+
+After that a folder is just a folder. Give each lesson or topic its own, and let
+`setup` write down which subject it is about:
 
 ```bash
 mkdir enzymes-lesson
@@ -67,11 +80,12 @@ then, inside that session:
 /dl-engine:setup al-bst
 ```
 
-That writes a `.mcp.json` in the folder pointing at
-`https://mcp.dlengine.xyz/mcp/al-bst`, with the key left as a
-`${DL_ENGINE_KEY}` reference rather than written into the file. Restart Claude
-Code, approve the server when asked, and the corpus tools are there. Live
-subject slugs today: `al-bst`, `al-ict`, `al-sft`, `ol-ict`, `gemology-101`.
+That checks the connector is there, proves `al-bst` is a subject your key can
+actually read, and writes the slug into the folder's `CLAUDE.md` so every session
+opened here knows what it is working on. Nothing is installed per folder, and
+switching the folder to another subject is a one-line edit of that file.
+
+Run `list_subjects` any time to see which slugs are yours.
 
 Everything after that is ordinary conversation in that folder. Output saves as
 files beside the lesson, or renders as an artifact.
@@ -80,7 +94,7 @@ files beside the lesson, or renders as an artifact.
 
 | Skill | What it does |
 | :--- | :--- |
-| `/dl-engine:setup <subject>` | Wires the current folder to one subject and checks the binding. |
+| `/dl-engine:setup <subject>` | Checks the connector, proves the slug is readable, and records the folder's subject in its CLAUDE.md. |
 | `/dl-engine:teach` | Builds a cited teaching brief for one concept: what the corpus says, bilingual vocabulary, prerequisites, how it is examined, and the gaps you must fill yourself. |
 | `/dl-engine:sweep <theme>` | Reads wide across the whole subject for one theme and reports where it lives, how the syllabus builds it, and how the lessons connect. |
 | `/dl-engine:audit` | Checks the subject against itself: dangling edges, evidence quotes that no longer hold, orphan lessons, prerequisites nothing covers. Reports, never edits. |
@@ -110,15 +124,18 @@ reports is a real gap rather than a search that was never run.
 
 ## Two design choices worth knowing
 
-**No plugin-level `.mcp.json`.** The subject lives in the connector URL, so a
-server configured once for the whole plugin would bind every folder to the same
-subject, which defeats the point of a folder per lesson. The `setup` skill writes a small
-`.mcp.json` per folder instead. That is also why a folder that has no corpus
-tools usually just needs `setup` run in it, or Claude Code restarted.
+**The subject is an argument, not the connector's address.** An earlier version
+put the slug in the URL, one connector per subject. That was safer in one narrow
+way, a session could not read the wrong corpus, and worse in every other: a key
+already reaches all your subjects, so pinning the connection re-imposed in
+configuration the limit the key had just lost, and teaching two subjects meant
+installing two of everything. The subject rides on each call instead. The risk
+that bought is real but it is handled by visibility rather than by a wall: every
+tool prints the subject it just read at the top of its own output, so a wrong one
+announces itself immediately instead of surfacing after the work is done.
 
-**The `api_key` setting is optional on purpose.** The per-folder `.mcp.json`
-reads `DL_ENGINE_KEY` from your environment, so the plugin never needs the key
-itself. Marking the field required would block installing the plugin for anyone
+**The `api_key` setting is optional on purpose.** The connector reads
+`DL_ENGINE_KEY` from your environment, so the plugin never needs the key itself. Marking the field required would block installing the plugin for anyone
 who has not minted a key yet. Fill it in if you want the key on record, but the
 environment variable is what the server actually reads.
 
@@ -126,10 +143,12 @@ environment variable is what the server actually reads.
 
 * **401 on every call**: the key is wrong, `DL_ENGINE_KEY` is unset, or plugin
   access was revoked. Check the plugin page.
-* **404 on every tool**: this folder's subject is not the key's subject. Fix the
-  slug, or use the key minted for that subject.
-* **No corpus tools at all**: `.mcp.json` is not in the folder Claude Code is
-  running in, or Claude Code has not been restarted since it was written.
+* **404 on one subject**: it is not assigned to your account, or not published.
+  `list_subjects` shows what is readable; an admin changes what is not.
+* **"No subject was named"**: a tool was called without `subject`. The folder's
+  `CLAUDE.md` should carry the slug; `setup` puts it there.
+* **No corpus tools at all**: the connector was never registered, or Claude Code
+  has not been restarted since. `/mcp` lists what is registered.
 
 ## Where this runs
 
