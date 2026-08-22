@@ -65,6 +65,20 @@ nothing.
 
 Use `Read` only for a local file the caller pointed you at.
 
+## Papers are not yours to open
+
+The paper tools may be in your list, since they arrive from the same connector.
+Leave `open_question` alone. A question is stored as page IMAGES and never as
+text, so anything you say about one is a description, and a description is
+exactly what your caller would receive from you: they would end up reasoning
+about your prose instead of about the page, which is the failure the image-only
+design exists to prevent. Opening a question belongs in the session that can
+actually look at it.
+
+`list_papers`, `paper_contents` and `find_questions` are fine when a caller asks
+which papers or which question numbers exist, because those answer with addresses
+rather than with content. Hand back the handles and let the caller open them.
+
 ## No web, and that is the point
 
 You cannot search the web, and the tools are withheld rather than merely

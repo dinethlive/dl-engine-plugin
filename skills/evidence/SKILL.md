@@ -1,6 +1,6 @@
 ---
 name: evidence
-description: The provenance contract for teaching material. Use whenever answering about the bound subject or producing notes, lesson plans, questions, summaries, slides, handouts or artifacts, whether the material comes from the dl-engine corpus, from a web search, or from both. Governs how syllabus, internet and inference are told apart in the output.
+description: The provenance contract for teaching material. Use whenever answering about the bound subject or producing notes, lesson plans, questions, summaries, slides, handouts or artifacts, whether the material comes from the dl-engine corpus, from a past paper question, from a web search, or from all three. Governs how syllabus, paper, internet and inference are told apart in the output.
 ---
 
 # Provenance rules
@@ -9,29 +9,43 @@ A teacher is not asking whether something is TRUE. They are asking whether it is
 **on the syllabus**, and those are different questions with different
 consequences. A fact from the corpus is examinable. A fact from the internet is
 enrichment: useful in the room, and dangerous the moment a student writes it in a
-paper believing it was taught. So the origin of a claim is not metadata about the
-answer. For this reader it is part of the answer.
+paper believing it was taught. A past paper question is neither of those. It is
+proof of what an examiner actually asked, which is why it is worth citing by
+itself and why it is never evidence of what the syllabus teaches. So the origin
+of a claim is not metadata about the answer. For this reader it is part of the
+answer.
 
 Where the standard comes from: dl-engine's own Atlas indexer discards any
 proposed link whose supporting quote is not found character for character in the
 source lesson. Output held to anything looser is output the corpus itself would
 have rejected.
 
-## The three sources, and they never blur
+## The four sources, and they never blur
 
 | Source | What it is | How it is marked |
 | --- | --- | --- |
 | **Syllabus** | The dl-engine corpus: lesson markdown, concept cards, connection edges. What the student is actually taught. | `` (`lesson-slug`) ``, plus `:142` when it came from a search |
+| **Paper** | A past paper question, which is its page images and nothing else. What the student is actually asked. | `` (`al-ict-2023-part-ii/q4`) ``, plus `page 2 of 3` when the claim is about one page |
 | **Web** | Anything from `WebSearch` or `WebFetch`. | `(web: domain.com, YYYY-MM-DD)` |
 | **Inference** | Your own reasoning: joining two lessons, filling a gap, extending a definition. | `Inference:` at the head of the sentence |
+
+**A paper is not the syllabus, and that is why it is a row of its own.** The
+corpus is what the subject teaches; a past paper is what an examiner did with it,
+written by a different hand for the opposite purpose. A question can test
+something the corpus never covers, and a corpus can teach at length something no
+paper has ever asked. That mismatch is one of the most useful things a teacher
+can be told, and folding papers in under "syllabus" would hide precisely it.
 
 Web search is allowed and often useful: a worked example the textbook omits, a
 recent figure, an explanation pitched at a different level. Use it freely when it
 helps. What is never allowed is letting it arrive **unmarked**, because unmarked
 it reads as syllabus.
 
-**No sentence carries two sources.** If a claim is half corpus and half web,
-split it into two sentences and mark each. A paragraph that mixes them without
+**No sentence carries two sources.** If a claim is half corpus and half web, or
+half question and half lesson, split it into two sentences and mark each. That
+last pairing is the one to watch when tracing a paper question, because "the
+question asks X and the syllabus teaches X" is two claims wearing one sentence,
+and only one of them was checked. A paragraph that mixes sources without
 markers is the failure this contract exists to prevent, and it is the easiest one
 to commit, because mixed prose reads more smoothly than marked prose. Smoothness
 is not the goal here.
@@ -65,33 +79,66 @@ is not the goal here.
    paraphrase, a translation or a tidied line inside quote marks. Translate
    outside the quote and mark it as a translation.
 
-5. **Label inference and keep it.** Connecting two lessons or extending a
+5. **A question image is the source. A transcript of it is not.** A past paper
+   question is stored as page images and never as text, because it may be a
+   circuit diagram, a match-the-following, a code listing or an MCQ whose five
+   options are themselves figures, and prose renderings of those fail silently.
+   So open the pages before saying anything about a question, cite the handle,
+   and quote only what is printed as TEXT, in its own characters. The moment a
+   claim rests on a figure, a table, a symbol or the layout, do not transcribe
+   it: describe it, and say the description is your reading. Quote marks around a
+   transcript claim a source that does not exist, which is the exact thing the
+   library refuses to store. And check the handle: the reply echoes it back and
+   the page usually prints its own number, so a beautifully cited claim about the
+   wrong question is catchable before it is written.
+
+6. **`topic` and `keywords` find a question. They never say what it asks.** They
+   are labels written after somebody looked at the page, they are frequently
+   null, and citing one as content is citing the filing system as a source.
+
+7. **No answer to a past paper question is ever sourced.** Marking schemes and
+   answer keys are deliberately outside what a plugin key can reach, so nothing
+   you say the answer is came from the paper. Work it out where it helps, and
+   label it `Inference:` however certain it feels. The teacher has to be able to
+   tell your answer from a scheme they could rely on.
+
+8. **Label inference and keep it.** Connecting two lessons or extending a
    definition is useful work. Say `Inference:` and state it. Do not delete it,
    and do not let it pass as sourced.
 
-6. **Never characterise a lesson you did not read.** A slug, a title and a
+9. **Never characterise a lesson you did not read.** A slug, a title and a
    concept card summary are not the lesson. Before saying what a lesson covers,
    argues or omits, `corpus_read` it.
 
-7. **On edges, prefer the quote over the claim.** An edge's `type` and `why` are
-   model-generated claims about the corpus. Its `evidence` quote is verified
-   source text. When a link is load-bearing, fetch it with
-   `corpus_links evidence=true` and cite the quote, not the `why`.
+10. **On edges, prefer the quote over the claim.** An edge's `type` and `why` are
+    model-generated claims about the corpus. Its `evidence` quote is verified
+    source text. When a link is load-bearing, fetch it with
+    `corpus_links evidence=true` and cite the quote, not the `why`.
 
-8. **Edge confidence is two buckets, not a scale.** 95 means two lessons
-   independently witnessed the link, 60 means one did. Report it as "one witness"
-   or "both lessons", never as a percentage, and never reason about the gap
-   between two numbers. An edge with no confidence predates the Atlas pass: say
-   the agreement is unknown rather than assuming a bucket.
+11. **Edge confidence is two buckets, not a scale.** 95 means two lessons
+    independently witnessed the link, 60 means one did. Report it as "one
+    witness" or "both lessons", never as a percentage, and never reason about the
+    gap between two numbers. An edge with no confidence predates the Atlas pass:
+    say the agreement is unknown rather than assuming a bucket.
 
-9. **Say plainly when the syllabus does not cover it.** That sentence is often
-   the single most useful thing in the answer, because it tells the teacher what
-   not to examine. Say it even when the web answered well.
+12. **Say plainly when the syllabus does not cover it.** That sentence is often
+    the single most useful thing in the answer, because it tells the teacher what
+    not to examine. Say it even when the web answered well.
+
+    Keep it honest, though, because "I did not find it" and "it is not there" are
+    different claims. `corpus_search` is literal substring matching, so a concept
+    the corpus prints in words you did not guess returns nothing and looks
+    identical to a concept the corpus never covers. State the second only after
+    reading the concept index rather than only searching it, trying both
+    languages, and trying the vocabulary the cards themselves use. Short of that,
+    say "not found under the terms I tried" and list them.
 
 ## Shape of a cited answer
 
 > Enzymes lower activation energy (`enzyme-action`).
 > "එන්සයිම මගින් සක්‍රීයන ශක්තිය අඩු කරයි" (`enzyme-action`:88)
+> Question 4 gives a temperature against rate graph and asks for the shape to be explained, for 6 marks (`al-bst-2023-part-ii/q4`).
+> Reading the graph, not quoting it: the curve rises to a peak and then falls sharply (`al-bst-2023-part-ii/q4`, page 1 of 2).
 > The syllabus does not give a numerical example of the effect.
 > Induced fit is the model most textbooks now use for the same idea (web: britannica.com, 2026-08-22). Not in this subject's corpus.
 > Inference: this is why the temperature curve in `metabolic-rate` peaks and then falls, though neither lesson states the link.
@@ -107,16 +154,18 @@ must be able to see where a line came from **without reading the citation**.
 Markers alone fail here, because at a glance a page of prose looks uniformly
 authoritative.
 
-- **Open with a one-line legend** naming the three sources, so the reader learns
-  the code before meeting it.
+- **Open with a one-line legend** naming the sources the page actually uses, so
+  the reader learns the code before meeting it.
 - **Give each source a consistent visual treatment** and keep it identical
-  throughout: syllabus as plain body text, web in a tinted or bordered aside,
-  inference in an outlined or italic block. In Markdown, blockquote and label.
-  Colour alone is never the signal, since a page gets printed in black and white
-  and handed to a class.
-- **Close with two separate lists**, never one merged "Sources": the lessons
-  read, by slug, and the pages fetched, by URL with the date. Merging them undoes
-  in the bibliography exactly what the markers achieved in the body.
+  throughout: syllabus as plain body text, a paper question in its own block
+  headed by its handle, web in a tinted or bordered aside, inference in an
+  outlined or italic block. In Markdown, blockquote and label. Colour alone is
+  never the signal, since a page gets printed in black and white and handed to a
+  class.
+- **Close with separate lists**, never one merged "Sources": the lessons read, by
+  slug; the questions opened, by handle with the paper's title and year; and the
+  pages fetched, by URL with the date. Merging them undoes in the bibliography
+  exactly what the markers achieved in the body.
 - **If the artifact is student-facing, say so and cut the web material**, or keep
   it under a heading that says it is beyond the syllabus. A student cannot be
   expected to hold the distinction the teacher is holding.

@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "dl-engine",
   "displayName": "dl-engine Corpus",
-  "version": "0.3.0",
-  "description": "Teach from the dl-engine corpus with citations. Wires a lesson folder to one subject's MCP corpus server, then prepares concepts, sweeps themes and audits the connection map, every claim carrying its lesson slug and line number.",
+  "version": "0.4.0",
+  "description": "Teach from the dl-engine corpus with citations. One connector reads every subject you are assigned: prepare a concept, sweep a theme, audit the connection map, and trace a past paper question back to the lessons that teach it, every claim carrying its lesson slug and line number.",
   "author": {
     "name": "Dineth Pramodya",
     "url": "https://dinethlive.com"
@@ -18,6 +18,7 @@
     "lesson-prep",
     "citations",
     "mcp",
+    "past-papers",
     "sinhala",
     "advanced-level",
     "sri-lanka"
