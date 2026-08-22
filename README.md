@@ -98,7 +98,33 @@ files beside the lesson, or renders as an artifact.
 | `/dl-engine:teach` | Builds a cited teaching brief for one concept: what the corpus says, bilingual vocabulary, prerequisites, how it is examined, and the gaps you must fill yourself. |
 | `/dl-engine:sweep <theme>` | Reads wide across the whole subject for one theme and reports where it lives, how the syllabus builds it, and how the lessons connect. |
 | `/dl-engine:audit` | Checks the subject against itself: dangling edges, evidence quotes that no longer hold, orphan lessons, prerequisites nothing covers. Reports, never edits. |
+| `/dl-engine:whatsnew` | What changed in the plugin, which version you are on, and how to get a newer one. |
 | `evidence` | The provenance contract: how syllabus, web and inference are told apart. Claude loads it whenever it produces teaching material, so you rarely invoke it yourself. |
+
+Only `setup` and `whatsnew` need typing. The rest are model-invoked: Claude reads
+what you want from how you phrase it, so "prepare me a lesson on enzyme action"
+reaches `teach` without you naming it. The slash forms still work if you prefer
+them.
+
+## Staying current
+
+**Auto-update is off by default for a marketplace like this one.** Claude Code
+turns it on for Anthropic's own marketplaces, not for third-party ones, so
+without changing it you will sit on the version you installed and nothing will
+say so.
+
+Turn it on once: `/plugin`, then **Marketplaces**, pick `dinethlive`, then
+**Enable auto-update**. Claude Code then checks shortly after each session starts
+and tells you to run `/reload-plugins` when something landed.
+
+To check by hand at any time:
+
+```
+/plugin marketplace update dinethlive
+```
+
+`/dl-engine:whatsnew` reads the changelog that shipped with your copy, so it also
+tells you which version you are actually running.
 
 There is also an agent, `dl-engine:corpus-reader`, for wide reads that would
 otherwise fill your session with raw lesson text. It reads, and returns cited

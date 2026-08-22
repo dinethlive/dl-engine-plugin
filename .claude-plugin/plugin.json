@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "dl-engine",
   "displayName": "dl-engine Corpus",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Teach from the dl-engine corpus with citations. Wires a lesson folder to one subject's MCP corpus server, then prepares concepts, sweeps themes and audits the connection map, every claim carrying its lesson slug and line number.",
   "author": {
     "name": "Dineth Pramodya",
