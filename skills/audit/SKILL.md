@@ -19,9 +19,9 @@ infer a narrower one.
 
 **This skill reports and never edits.** There is no write tool here, and a fix
 does not belong on the client side anyway: dangling edges, drifted quotes and
-missing cards are all produced at ingest time and are repaired by re-running the
-pipeline in the dl-engine repo (`ingest`, `index`, `ingest-outline`). Hand the
-teacher a finding they can act on there. Never propose patching the data.
+missing cards are all produced when the corpus is built, and are repaired by
+rebuilding it. Hand the teacher a finding precise enough to act on, and never
+propose patching the data from here.
 
 ## The subject
 
@@ -47,9 +47,11 @@ lesson). Then check 4 (needs `format='full'` and a search per prerequisite).
 
 ## 1. Dangling edges
 
-`toSlug` has no foreign key on purpose: the outline pipeline builds the
-prerequisite graph before every lesson body exists, so the database accepts a
-target that does not exist yet.
+An edge may point at a lesson that does not exist. That is expected rather than
+broken: a subject's prerequisite graph can be laid out before every lesson has
+been written, so a target can legitimately be ahead of the corpus. What makes it
+worth reporting is that nothing distinguishes "not written yet" from "typo" on
+sight.
 
 Build the slug set from `corpus_index`, then report every edge whose `toSlug` is
 not in it. Check `fromSlug` against the same set while you are there.
