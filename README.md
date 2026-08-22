@@ -98,14 +98,38 @@ files beside the lesson, or renders as an artifact.
 | `/dl-engine:teach` | Builds a cited teaching brief for one concept: what the corpus says, bilingual vocabulary, prerequisites, how it is examined, and the gaps you must fill yourself. |
 | `/dl-engine:sweep <theme>` | Reads wide across the whole subject for one theme and reports where it lives, how the syllabus builds it, and how the lessons connect. |
 | `/dl-engine:audit` | Checks the subject against itself: dangling edges, evidence quotes that no longer hold, orphan lessons, prerequisites nothing covers. Reports, never edits. |
-| `evidence` | The citation contract. Claude loads it whenever it answers from the corpus, so you rarely invoke it yourself. |
+| `evidence` | The provenance contract: how syllabus, web and inference are told apart. Claude loads it whenever it produces teaching material, so you rarely invoke it yourself. |
 
 There is also an agent, `dl-engine:corpus-reader`, for wide reads that would
 otherwise fill your session with raw lesson text. It reads, and returns cited
-findings.
+findings. It has no web access on purpose: what it exists to give you is a clean
+answer to "what does this syllabus teach", and that stops being clean the moment
+an outside explanation is in the room with it.
 
 `sweep` and `audit` run in their own forked context. They read a great deal and
 hand back only the finished report, so your session stays clear.
+
+## Syllabus, web, inference
+
+Web search is on and you should use it. What the plugin will not do is let it
+arrive unmarked, because a teacher is rarely asking whether something is true.
+They are asking whether it is **on the syllabus**, and those are different
+questions: a corpus fact is examinable, a web fact is enrichment, and it turns
+dangerous the moment a student writes it in a paper believing it was taught.
+
+So every claim carries where it came from, and the three never blur into one
+paragraph:
+
+| | |
+| :--- | :--- |
+| **Syllabus** | `` (`lesson-slug`:142) `` — the corpus, what your students are actually taught |
+| **Web** | `(web: domain.com, 2026-08-22)` — domain and the day it was read |
+| **Inference** | `Inference:` — the model joining two things the corpus never joins itself |
+
+In a handout or an artifact this becomes visual as well as written, so a page can
+be scanned rather than read, with the lessons and the URLs listed separately at
+the end. Merging them into one "Sources" list would undo in the bibliography
+exactly what the markers achieved in the body.
 
 ## Why output from this is worth trusting
 
@@ -118,6 +142,7 @@ to the same bar:
 * anything that cannot be cited is labelled as inference and kept, never quietly
   asserted and never quietly dropped
 * a lesson that was not read is never characterised
+* a gap in the syllabus is reported as a gap, not quietly filled from the web
 
 So a brief you take into a classroom can be checked line by line, and a gap it
 reports is a real gap rather than a search that was never run.

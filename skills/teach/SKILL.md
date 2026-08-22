@@ -97,6 +97,21 @@ Each gap: what is missing, where the hole shows (`slug:LINE`), what the teacher 
 supply themselves. This is the most valuable section and the easiest to leave empty
 by shrugging. If you found no gaps, list the searches you ran that came back empty.
 
+## Syllabus and web are different sections
+
+The brief may use web search, and often should: a worked example the textbook
+omits, a diagram pitched better, a recent figure. It must never let that arrive
+looking like syllabus.
+
+Corpus first, always, and not as etiquette. A web explanation read first will
+colour how you read the lesson, and you will start seeing the syllabus agree with
+it. Establish what this subject teaches, then go outside for what is missing.
+
+Keep web material in its OWN section, headed so the teacher can see at a glance
+what is examinable and what is context. Every web line carries its domain and the
+date. And say what the corpus did not cover, explicitly: that sentence tells the
+teacher what not to examine, which is worth as much as anything the brief adds.
+
 ## Evidence contract
 
 - Every claim carries its source: `lesson-slug` when read, `lesson-slug:LINE` when

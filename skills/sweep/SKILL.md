@@ -84,6 +84,17 @@ Return the report itself as your answer, not a path. Do not write files unless
 - **Coverage.** Which lessons you read in full, which you only searched, and any
   query variant that returned nothing.
 
+## Syllabus and web
+
+A sweep answers "where does this subject teach this theme", so the corpus is the
+whole job and the web is at most a footnote. If you use it, mark every line with
+its domain and date, keep it under its own heading at the end, and never let it
+into the "where the concept is taught" answer, which is a claim about THIS
+corpus and nothing else.
+
+A theme the corpus does not cover is a real finding. Report it as one instead of
+filling the hole from outside and handing back a report that looks complete.
+
 ## Evidence rule
 
 The Atlas indexer throws away any link whose quote is not in the source lesson
