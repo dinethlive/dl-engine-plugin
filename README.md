@@ -84,6 +84,7 @@ topic; switching a folder to another subject is a one-line edit of that file.
 | `teach` | A cited brief for one concept: what the corpus says, the vocabulary, what it rests on, how it is examined, and the gaps you fill yourself. |
 | `sweep <theme>` | Reads wide across a whole subject for one theme and hands back one report. |
 | `trace <question>` | Opens a past paper question as images, reads what it asks, then finds where the syllabus teaches it and what it never covers. |
+| `bloom` | Reads a lesson or a paper through the revised Bloom's taxonomy: which cells it occupies, which are empty, and questions or notes written at a level you name. |
 | `audit` | Checks a subject against itself: dangling links, evidence quotes that no longer hold, orphan lessons. Reports, never edits. |
 | `whatsnew` | What changed, which version you are on, how to update. |
 | `evidence` | The provenance contract. Loaded automatically whenever output is produced. |

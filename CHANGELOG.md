@@ -6,6 +6,44 @@ without leaving the terminal.
 Versions matter more here than they look: Claude Code pins an installed plugin to
 the version string, so a release that forgets to bump it never reaches anyone.
 
+## 0.5.0
+
+**A lesson, or a paper, read through the revised Bloom's taxonomy.**
+
+Teachers keep needing the same two answers and the corpus states neither: what a
+lesson is actually asking of a student, and what an examiner actually rewards.
+
+- **New skill, `bloom`.** Map a lesson onto the taxonomy table, profile what
+  levels a paper tests, or write questions and notes at a level you name. It
+  reaches for the corpus and the paper tools that already exist rather than
+  answering from what it remembers about a subject.
+- **The 2001 revision, and both of its axes.** Six cognitive processes crossed
+  with four knowledge types, so an objective lands in a CELL and not on a level.
+  Almost everyone drops the knowledge axis and keeps the six renamed levels,
+  which is where the value went: the blank cells are the finding, and the
+  metacognitive row is empty in nearly every A/L corpus.
+- **It will not classify by looking a verb up in a table**, because that is the
+  documented error rather than the method. "Explain" is Understand when a
+  student must reconstruct a mechanism and Remember when the lesson already
+  prints that explanation in a reproducible sentence. So the skill reads the
+  lesson first and asks what the student has to do that the source does not do
+  for them.
+- **No pyramid.** The triangle appears in neither the 1956 nor the 2001 book, and
+  the reviser who led the 2001 edition says so in as many words. The processes
+  are a toolbox, not a ladder, so applying in order to understand is ordinary.
+- **A cognitive level is inference, and the contract now says so.** The corpus
+  never states what level anything sits at, so a classification is a judgment
+  about a cited thing rather than something a source asserted. The lesson or the
+  question handle is cited normally; the level is marked `Inference:`. Same for
+  DOK and SOLO.
+- Two findings the skill goes looking for, because neither is visible from one
+  library alone: what a paper tests that the corpus never teaches, and what the
+  corpus teaches that no paper has ever asked.
+- Honest about the framework: a shared language and a heuristic, not a validated
+  theory of learning, with empirical support claimed for roughly its lower four
+  levels. "Higher" does not mean harder, and lower levels are the foundation
+  rather than disposable steps.
+
 ## 0.4.0
 
 **Past papers, and a question is the page you look at.**
