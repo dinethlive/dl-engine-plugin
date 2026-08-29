@@ -20,50 +20,40 @@ handle, a web domain, or an explicit `Inference:` label.
 
 | | |
 | :--- | :--- |
-| **Claude Code** | any version with `/plugin` support |
+| **Claude Code or Claude Desktop** | any version with plugin support |
 | **A dl-engine account** | with plugin access enabled by an admin |
-| **An API key** | minted at [dlengine.xyz/plugin](https://dlengine.xyz/plugin) |
+
+No API key. Since v0.6.0 the connector signs in with **Connect**: it opens
+dlengine.xyz in your browser and you approve there. A key you already hold keeps
+working; nothing about it changed.
 
 Two things about access that catch people out:
 
 - **A key minted before v0.4.0 reads the corpus but not papers.** Scopes are
   written when a key is minted, so an older key keeps working and simply has no
-  paper tools behind it. Mint a fresh one and update `DL_ENGINE_KEY`.
+  paper tools behind it. Connect again, or mint a fresh one.
 - **Papers are granted per paper, not per subject.** A paper's subject is a tag
   for filtering and grants nothing, so being assigned A/L ICT does not hand you
   the ICT papers. `list_papers` can be empty on an account whose subjects work.
 
 ## Install
 
-**1. Put your key in your shell profile**, once, not per session:
-
-```bash
-export DL_ENGINE_KEY='paste-your-key'          # ~/.bashrc or ~/.zshrc
-```
-
-```powershell
-$env:DL_ENGINE_KEY = 'paste-your-key'          # the file $PROFILE names
-```
-
-**2. Register the connector**, once for your whole account:
-
-```bash
-claude mcp add --scope user --transport http dl-engine \
-  https://mcp.dlengine.xyz/mcp \
-  --header 'Authorization: Bearer ${DL_ENGINE_KEY}'
-```
-
-**3. Install the plugin:**
+**1. Install the plugin.** The connector ships inside it, so this is the only
+step that adds anything:
 
 ```
 /plugin marketplace add dinethlive/dl-engine-plugin
 /plugin install dl-engine@dinethlive
 ```
 
-**4. Restart Claude Code.** Connectors and plugins are both read at start, so
-neither appears in the session that installed it.
+**2. Restart.** Plugins and the servers they carry are both read at start, so
+neither appears in the session that installed them.
 
-**5. Point a folder at a subject:**
+**3. Connect.** Ask for anything from the corpus. The first call comes back
+asking you to authorize, your client offers **Connect**, and approving on
+dlengine.xyz is the whole of it. Already signed in there? One click.
+
+**4. Point a folder at a subject:**
 
 ```bash
 mkdir enzymes-lesson && cd enzymes-lesson && claude
@@ -195,11 +185,11 @@ tells you which version you are actually running.
 
 | Symptom | Cause |
 | :--- | :--- |
-| No corpus tools at all | The connector was never registered, or Claude Code has not restarted. `/mcp` lists what is registered. |
-| `This key is not valid` | `DL_ENGINE_KEY` is unset so the header went out empty, the key is wrong, or plugin access was revoked. |
+| No corpus tools at all | The plugin is installed but the client has not restarted. `/mcp` lists what is registered. |
+| Every call asks you to connect | Not authorized yet, or the credential was revoked. Connect again, unless an admin withdrew plugin access. |
 | `No subject was named` | A corpus tool was called without `subject`. The folder's `CLAUDE.md` should carry the slug. |
 | 404 on one subject | Not assigned to your account, or not published. `list_subjects` shows what is readable. |
-| Paper tools refused | Your key predates v0.4.0. Mint a fresh one. |
+| Paper tools refused | Your credential predates v0.4.0. Connect again, or mint a fresh key. |
 | `list_papers` is empty | No papers assigned yet. An admin assigns them per paper. |
 
 </details>

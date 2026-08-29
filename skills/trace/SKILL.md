@@ -236,9 +236,9 @@ yes, with every citation intact.
 
 - **"This key is not scoped for that."** The corpus tools work and the paper
   tools refuse, which means the key was minted before papers were reachable. Tell
-  the teacher to mint a fresh one at
-  [dlengine.xyz/plugin](https://dlengine.xyz/plugin) and update `DL_ENGINE_KEY`.
-  Nothing else changes, and the corpus tools keep working in the meantime.
+  the teacher to connect again, which mints a current one, or to mint a fresh
+  key at [dlengine.xyz/plugin](https://dlengine.xyz/plugin). Nothing else
+  changes, and the corpus tools keep working in the meantime.
 - **`list_papers` comes back empty and nothing was filtered.** No paper has been
   assigned to this account. Publishing a paper reaches nobody on its own and a
   subject tag grants nothing, so an admin assigns it. There is nothing to
