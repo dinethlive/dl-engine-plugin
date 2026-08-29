@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "dl-engine": {
+      "type": "http",
+      "url": "https://mcp.dlengine.xyz/mcp"
+    }
+  }
+}

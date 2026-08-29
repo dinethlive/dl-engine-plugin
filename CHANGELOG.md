@@ -6,6 +6,31 @@ without leaving the terminal.
 Versions matter more here than they look: Claude Code pins an installed plugin to
 the version string, so a release that forgets to bump it never reaches anyone.
 
+## 0.6.0
+
+**Connect instead of pasting a key.**
+
+Installing this plugin used to leave you with skills and no tools: the connector
+arrived from a `claude mcp add` command the setup skill printed, which is a
+Claude Code command, so installing from the git repo in Claude Desktop gave you
+half a plugin and no way to finish. And there was no way to finish, because
+Desktop's connector UI takes a URL and has no field a teacher could paste a key
+into.
+
+- **The connector ships with the plugin**, in `.mcp.json` at the root. Installing
+  registers it. There is no command to run and no `--header` to get right.
+- **Authorizing is a Connect button.** dl-engine now answers an unauthorized call
+  with an OAuth challenge, so the client offers to connect, opens dlengine.xyz in
+  your browser, and you approve on a screen naming the client and what it will
+  read. If you are already signed in there, that is one click.
+- **`DL_ENGINE_KEY` is no longer needed anywhere**, and no shell profile has to
+  be edited. A key you already hold keeps working exactly as it did: approving
+  mints the same kind of key, so a connection appears in the list at
+  https://dlengine.xyz/plugin and revoking it there disconnects the client.
+- **`/dl-engine:setup` rewritten** around all of that, including what each
+  failure now actually means. Its second job, pointing a folder at a subject, is
+  unchanged.
+
 ## 0.5.0
 
 **A lesson, or a paper, read through the revised Bloom's taxonomy.**

@@ -2,6 +2,13 @@
 # would be a live read of that subject for anyone holding the repo.
 .mcp.json
 
+# Except THIS repo's own, at the root, which is the opposite thing: it is the
+# connector the plugin SHIPS, and it is why installing the plugin now gives you
+# the corpus tools with no command to run. It carries a public URL and no
+# credential, because authorizing is the Connect flow rather than a header, so
+# there is nothing here to leak. The rule above still covers a nested one.
+!/.mcp.json
+
 # Local Claude Code state
 .claude/settings.local.json
 
