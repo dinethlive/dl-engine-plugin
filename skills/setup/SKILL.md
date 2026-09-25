@@ -107,3 +107,7 @@ consecutive calls when the work genuinely spans both.
 - **A key in `DL_ENGINE_KEY`, from before Connect existed**: still valid, and it
   authenticates the same account. Leave it alone unless the teacher wants it
   gone.
+- **It worked for months and now every call asks you to connect**: a Connect
+  credential lasts ninety days. Connecting again is the whole fix and takes one
+  click when the browser is already signed in. A key minted by hand on the
+  `/plugin` page does not lapse this way.

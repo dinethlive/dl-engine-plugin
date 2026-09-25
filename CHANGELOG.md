@@ -6,6 +6,24 @@ without leaving the terminal.
 Versions matter more here than they look: Claude Code pins an installed plugin to
 the version string, so a release that forgets to bump it never reaches anyone.
 
+## 0.6.1
+
+**A Connect credential now lasts ninety days, and asks again when it lapses.**
+
+A connection made with the Connect button used to hold a credential that never
+expired, stored somewhere you never look. It now expires after ninety days, and
+dl-engine's server answers the next call after that with the same challenge that
+first put the Connect button in front of you, so a lapsed connection re-prompts
+instead of reporting a dead tool. A key you minted by hand on
+https://dlengine.xyz/plugin still lives until you revoke it.
+
+- **The `api_key` setting is gone from the plugin's config.** It was declared
+  and never read, so a key pasted there did nothing. A key you hold is used the
+  way it always was, with `claude mcp add --transport http dl-engine
+  https://mcp.dlengine.xyz/mcp --header "Authorization: Bearer dlk_live_..."`,
+  and Connect needs no key at all.
+- The README badge now shows the version you are actually reading.
+
 ## 0.6.0
 
 **Connect instead of pasting a key.**
