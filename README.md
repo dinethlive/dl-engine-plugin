@@ -1,6 +1,6 @@
 # dl-engine Corpus
 
-[![Version](https://img.shields.io/badge/version-0.4.0-informational)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.1-informational)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial-blue)](LICENSE.md)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-orange)](https://code.claude.com/docs/en/discover-plugins)
 
